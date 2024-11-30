@@ -1,19 +1,33 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "utils/src/button.h"
+#include "utils/src/macros.h"
+#include "defs.h"
+
+void turn_on(){
+    gpio_put(LED_PIN, 1);    
+}
+
+void turn_off(){
+    gpio_put(LED_PIN, 0);    
+}
 
 int main() {
-    const uint LED_PIN = 25;
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+
+    gpio_init(BUTTON_PIN);
+    gpio_set_dir(BUTTON_PIN, GPIO_IN);
+    gpio_set_pulls(BUTTON_PIN, false, true);
+    
+    struct button buttons[1];
+    init_buttons(buttons, ARRAY_LEN(buttons)); 
+    
+    buttons[0].pin = BUTTON_PIN;
+    buttons[0].on_down = turn_on;
+    buttons[0].on_up = turn_off;
     
     while (true) {
-        gpio_put(LED_PIN, 1);
-        sleep_ms(250);
-        gpio_put(LED_PIN, 0);
-        sleep_ms(250);
-        gpio_put(LED_PIN, 1);
-        sleep_ms(450);
-        gpio_put(LED_PIN, 0);
-        sleep_ms(450);
+        process_button_events(buttons, ARRAY_LEN(buttons));
     }
 }

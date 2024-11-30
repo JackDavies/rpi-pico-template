@@ -9,7 +9,7 @@ pico_sdk_init()
 
 # project
 add_executable(output
-    main.c
+    main.c utils/src/button.c
 )
 
 # Add pico_stdlib library which aggregates commonly used features
