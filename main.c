@@ -21,13 +21,13 @@ int main() {
     gpio_set_pulls(BUTTON_PIN, false, true);
     
     struct button buttons[1];
-    init_buttons(buttons, ARRAY_LEN(buttons)); 
+    init_buttons(buttons, ARRAY_LENGTH(buttons)); 
     
     buttons[0].pin = BUTTON_PIN;
     buttons[0].on_down = turn_on;
     buttons[0].on_up = turn_off;
     
     while (true) {
-        process_button_events(buttons, ARRAY_LEN(buttons));
+        process_button_events(buttons, ARRAY_LENGTH(buttons));
     }
 }
