@@ -20,7 +20,7 @@ int main() {
     gpio_set_dir(BUTTON_PIN, GPIO_IN);
     gpio_set_pulls(BUTTON_PIN, false, true);
     
-    struct button buttons[1];
+    struct Button buttons[1];
     init_buttons(buttons, ARRAY_LENGTH(buttons)); 
     
     buttons[0].pin = BUTTON_PIN;
