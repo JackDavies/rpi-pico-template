@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "utils/src/button.h"
-#include "utils/src/macros.h"
+#include "../utils/src/button.h"
+#include "../utils/src/macros.h"
 #include "defs.h"
 
 void turn_on(){
